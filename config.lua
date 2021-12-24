@@ -11,7 +11,7 @@ Config.Gifts = { --{inventory itemname, amount}
     {"money",120},
     {"money",150},
     {"golden_nugget",1},
-    {"woodlog",1}
+    {"woodlog",1},
     {"WEAPON_REVOLVER_CATTLEMAN",20},-- for weapon, amount is ammo count
 }
 
