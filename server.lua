@@ -46,8 +46,7 @@ elseif framework == "qbr" then
           User.Functions.AddMoney("cash", Config.Gifts[random][2]), "desc")
           text = Config.Recieved.."\n+$"..Config.Gifts[random][2]
      end
-          TriggerClientEvent("Notification:left_xmas", _source, Config.Title, text, "scoretimer_textures", "scoretimer_generic_tick", 2000)
-end
+     TriggerClientEvent("Notification:left_xmas", _source, Config.Title, text, "scoretimer_textures", "scoretimer_generic_tick", 2000)
 end)
 
 
