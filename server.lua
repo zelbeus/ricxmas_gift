@@ -43,7 +43,7 @@ elseif framework == "qbr" then
           text = Config.Recieved.."\n"..label.." ("..Config.Gifts[random][2]..")"
      else
           local User = exports['qbr-core']:GetPlayer(_source)
-          User.Functions.AddMoney("cash", Config.Gifts[random][2]), "desc")
+          User.Functions.AddMoney("cash", Config.Gifts[random][2], "desc")
           text = Config.Recieved.."\n+$"..Config.Gifts[random][2]
      end
      TriggerClientEvent("Notification:left_xmas", _source, Config.Title, text, "scoretimer_textures", "scoretimer_generic_tick", 2000)
