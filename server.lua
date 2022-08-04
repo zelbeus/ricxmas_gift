@@ -1,6 +1,9 @@
 data = {}
 local QBRItems
-local framework = "redemrp" --"redemrp" or "qbr"
+local VorpCore
+local VorpInv
+
+local framework = "redemrp" --"redemrp" or "qbr" or "vorp" MAKE SURE TO NOT ADD WEAPONS FOR VORP
 
 if framework == "redemrp" then
 	TriggerEvent("redemrp_inventory:getData",function(call)
@@ -8,6 +11,11 @@ if framework == "redemrp" then
 	end)
 elseif framework == "qbr" then 
 	QBRItems = exports['qbr-core']:GetItems()
+elseif framework == "vorp" then 
+	TriggerEvent("getCore",function(core)
+	    VorpCore = core
+	end)
+	VorpInv = exports.vorp_inventory:vorp_inventoryApi()
 end
 
 
@@ -44,6 +52,17 @@ elseif framework == "qbr" then
      else
           local User = exports['qbr-core']:GetPlayer(_source)
           User.Functions.AddMoney("cash", Config.Gifts[random][2], "desc")
+          text = Config.Recieved.."\n+$"..Config.Gifts[random][2]
+     end
+     TriggerClientEvent("Notification:left_xmas", _source, Config.Title, text, "scoretimer_textures", "scoretimer_generic_tick", 2000)
+elseif framework == "vorp" then 
+  local random = math.random(1,#Config.Gifts)
+     if  Config.Gifts[random][1] ~= "money" then
+        VorpInv.addItem(_source, Config.Gifts[random][1], Config.Gifts[random][2])
+          text = Config.Recieved.."\n"..Config.Gifts[random][1].." ("..Config.Gifts[random][2]..")"
+     else
+	local Character = VorpCore.getUser(_source).getUsedCharacter
+	Character.addCurrency(0 , Config.Gifts[random][2])
           text = Config.Recieved.."\n+$"..Config.Gifts[random][2]
      end
      TriggerClientEvent("Notification:left_xmas", _source, Config.Title, text, "scoretimer_textures", "scoretimer_generic_tick", 2000)
